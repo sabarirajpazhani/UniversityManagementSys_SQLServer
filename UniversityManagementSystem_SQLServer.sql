@@ -47,3 +47,18 @@ create table TotalMark(
 	TotalMark int,
 	foreign key (StudentID) references Students(StudentID)
 );
+
+--create Roll table for Teachers
+create table Roll(
+	RollID int primary key,
+	RollName varchar(50)
+);
+
+--Create Teacher table
+create table Teacher(
+	TeacherID int primary key,
+	TeacherName varchar(60),
+	RollID int,
+	DepartmentID int,
+	foreign key(DepartmentID) references Department(DepartmentID)
+);
