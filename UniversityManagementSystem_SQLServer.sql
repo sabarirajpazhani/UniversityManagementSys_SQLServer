@@ -62,7 +62,6 @@ create table TeacherRoles(
 	TeacherRoleName varchar(50)
 );
 
-;
 
 --Create Teacher table
 create table Teacher(
@@ -72,7 +71,7 @@ create table Teacher(
 	TeacherRoleID int,
 	DepartmentID int,
 	foreign key(DepartmentID) references Department(DepartmentID),
-	foreign key(TeacherRoleID) references TeachersRoles(TeacherRoleID),
+	foreign key(TeacherRoleID) references TeacherRoles(TeacherRoleID),
 	foreign key(RoleID) references Roles(RoleID)
 );
 
@@ -85,22 +84,24 @@ create table TeacherLogin(
 );
 
 
-
-
 -- Create Attendance table
 create table Attendance (
     AttendanceID INT PRIMARY KEY,
     PersonID INT,
+	RoleID int,
     AttendanceDate DATE,
-    AttendanceStatus CHAR(1) NOT NULL CHECK (AttendanceStatus IN ('P', 'A'))
+    AttendanceStatus CHAR(1) NOT NULL CHECK (AttendanceStatus IN ('P', 'A')),
+	foreign key(PersonID)references Roles(RoleID),
+	foreign key(PersonID) references StudentandTeacher(PersonID)
 );
 
-
+drop table StudentandTeacher;
 
 --create stuentandTeacher table
 create table StudentandTeacher(
-	PersonID int,
+	PersonID int primary key,
 	RoleID int,
+	
 );
 
 INSERT INTO StudentandTeacher (PersonID, RoleID)
