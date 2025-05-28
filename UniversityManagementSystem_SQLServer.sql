@@ -86,16 +86,13 @@ create table TeacherLogin(
 
 -- Create Attendance table
 create table Attendance (
-    AttendanceID INT PRIMARY KEY,
     PersonID INT,
-	RoleID int,
     AttendanceDate DATE,
     AttendanceStatus CHAR(1) NOT NULL CHECK (AttendanceStatus IN ('P', 'A')),
-	foreign key(PersonID)references Roles(RoleID),
+	primary key(PersonID,AttendanceDate),
 	foreign key(PersonID) references StudentandTeacher(PersonID)
 );
 
-drop table StudentandTeacher;
 
 --create stuentandTeacher table
 create table StudentandTeacher(
