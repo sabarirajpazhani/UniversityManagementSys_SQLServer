@@ -3,13 +3,21 @@ create database UniversityManagementSystem;
 
 use UniversityManagementSystem;
 
+--create Roll table
+create table Roles(
+	RoleID int primary key, --student and teacher
+	RoleName varchar(50)
+);
+
 -- Creating Student table
 create table Students(
 	StudentID int primary key,
 	StudentName varchar(70),
+	RoleID int,
 	DepartmentID int,
 	DateOfBirth date,
-	foreign key (DepartmentID) references Department(DepartmentID)
+	foreign key (DepartmentID) references Department(DepartmentID),
+	foreign key (RoleID) references Roles(RoleID)
 );
 
 --create StudentLogin table
@@ -49,16 +57,53 @@ create table TotalMark(
 );
 
 --create Roll table for Teachers
-create table Roll(
-	RollID int primary key,
-	RollName varchar(50)
+create table TeacherRoles(
+	TeacherRoleID int primary key,
+	TeacherRoleName varchar(50)
 );
+
+;
 
 --Create Teacher table
 create table Teacher(
 	TeacherID int primary key,
+	RoleID int,
 	TeacherName varchar(60),
-	RollID int,
+	TeacherRoleID int,
 	DepartmentID int,
-	foreign key(DepartmentID) references Department(DepartmentID)
+	foreign key(DepartmentID) references Department(DepartmentID),
+	foreign key(TeacherRoleID) references TeachersRoles(TeacherRoleID),
+	foreign key(RoleID) references Roles(RoleID)
 );
+
+
+--create TeacherLogin table
+create table TeacherLogin(
+	TeacherID int,
+	Password varchar(60),
+	foreign key(TeacherID) references Teacher(TeacherID)
+);
+
+
+
+
+-- Create Attendance table
+create table Attendance (
+    AttendanceID INT PRIMARY KEY,
+    PersonID INT,
+    AttendanceDate DATE,
+    AttendanceStatus CHAR(1) NOT NULL CHECK (AttendanceStatus IN ('P', 'A'))
+);
+
+
+
+--create stuentandTeacher table
+create table StudentandTeacher(
+	PersonID int,
+	RoleID int,
+);
+
+INSERT INTO StudentandTeacher (PersonID, RoleID)
+SELECT StudentID, RoleID FROM Students
+UNION
+SELECT TeacherID, RoleID FROM Teacher;
