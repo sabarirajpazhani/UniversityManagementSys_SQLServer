@@ -12,6 +12,7 @@ create table Students(
 	foreign key (DepartmentID) references Department(DepartmentID)
 );
 
+--create StudentLogin table
 create table StudentsLogin(
 	StudentID int,
 	Password varchar(60),
@@ -40,6 +41,7 @@ create table SubjectMark(
 	foreign key(SubjectID) references Subjects(SubjectID)
 );
 
+--Create TotalMark Table
 create table TotalMark(
 	StudentID int,
 	TotalMark int,
