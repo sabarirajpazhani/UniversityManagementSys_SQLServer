@@ -142,4 +142,38 @@ values
 (5,'34754'),
 (6,'74678');
 
--
+--inserting values into the Subjects table
+insert into Subjects(SubjectID,SubjectName)
+values
+(111,'Computer Networks'),
+(222,'Machine Learning'),
+(333,'Web Technologies'),
+(444,'BEEE'),
+(555,'Electric communication');
+
+--inserting values into the SubjectsMark table
+insert into SubjectMark(StudentID,SubjectID,Mark)
+values
+(1,111,98),
+(2,111,89),
+(4,222,87),
+(1,222,89),
+(1,555,90),
+(2,555,95),
+(6,333,78),
+(3,444,90),
+(3,111,89),
+(5,444,82),
+(5,111,90);
+
+--inserting values into the TotalMark table
+insert into TotalMark(StudentID,TotalMark)
+select StudentID , SUM(Mark) as TotalMark from SubjectMark
+group by StudentID;
+
+--inserting values into the TeacherRoles
+insert into TeacherRoles(TeacherRoleID,TeacherRoleName)
+values
+(1111,'Teaching Staff'),
+(2222,'Non-Teaching Staff');
+
