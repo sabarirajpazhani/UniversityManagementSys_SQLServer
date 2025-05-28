@@ -12,6 +12,11 @@ create table Students(
 	foreign key (DepartmentID) references Department(DepartmentID)
 );
 
+create table StudentsLogin(
+	StudentID int,
+	Password varchar(60),
+	foreign key (StudentID) references Students(StudentID)
+);
 
 -- Creating Department table
 create table Department(
@@ -19,13 +24,11 @@ create table Department(
 	DepartmentName varchar(60)
 );
 
-
 --Creating Subjects table
 create table Subjects(
 	SubjectID int Primary key,
 	SubjectName varchar(50)
 );
-
 
 -- Creating SubjectMark table
 create table SubjectMark(
@@ -37,3 +40,8 @@ create table SubjectMark(
 	foreign key(SubjectID) references Subjects(SubjectID)
 );
 
+create table TotalMark(
+	StudentID int,
+	TotalMark int,
+	foreign key (StudentID) references Students(StudentID)
+);
