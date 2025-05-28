@@ -101,12 +101,6 @@ create table StudentandTeacher(
 	
 );
 
-INSERT INTO StudentandTeacher (PersonID, RoleID)
-SELECT StudentID, RoleID FROM Students
-UNION
-SELECT TeacherID, RoleID FROM Teacher;
-
-
 --inserting values into the Roles table
 insert into Roles (RoleID,RoleName)
 values
@@ -177,3 +171,29 @@ values
 (1111,'Teaching Staff'),
 (2222,'Non-Teaching Staff');
 
+--inserting vallues into the Teacher table
+insert into Teacher(TeacherID,RoleID,TeacherName,TeacherRoleID,DepartmentID)
+values
+(1101, 2, 'Elavarasi',1111,1),
+(2202, 2, 'Deepa',1111,3),
+(3303, 2, 'Raj',2222,null),
+(4404, 2, 'Jothika',1111,2),
+(5505, 2, 'PalaniSamy',2222,null),
+(6606, 2, 'Banu',1111,4),
+(7707, 2, 'Shalini',1111,5);
+
+--inserting values into TeacherLogin
+insert into TeacherLogin(TeacherID,Password)
+values
+(1101, '12334'),
+(2202, '32334'),
+(3303, '73455'),
+(4404, '80238'),
+(5505, '80289'),
+(6606, '80309'),
+(7707, '00893');
+
+insert into StudentandTeacher (PersonID, RoleID)
+select StudentID, RoleID from Students
+union
+select TeacherID, RoleID from Teacher;
