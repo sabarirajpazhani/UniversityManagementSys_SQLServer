@@ -105,3 +105,41 @@ INSERT INTO StudentandTeacher (PersonID, RoleID)
 SELECT StudentID, RoleID FROM Students
 UNION
 SELECT TeacherID, RoleID FROM Teacher;
+
+
+--inserting values into the Roles table
+insert into Roles (RoleID,RoleName)
+values
+(1, 'Student'),
+(2,'Teacher');
+
+--inserting values into the Department table
+insert into Department(DepartmentID,DepartmentName)
+values
+(1,'CSE'),
+(2,'IT'),
+(3,'AIDS'),
+(4,'ECE'),
+(5,'EEE');
+
+--inserting values into the Students Table
+insert into Students(StudentID,StudentName,RoleID,DepartmentID,DateOfBirth)
+values
+(1,'Sabari',1,1,'2004-06-08'),
+(2,'Thamizh',1,1,'2003-12-13'),
+(3,'Suriya',1,3,'2024-09-12'),
+(4,'Vinoth',1,4,'2003-12-09'),
+(5,'Dena',1,3,'2004-05-10'),
+(6,'Mani',1,5,'2004-12-12');
+
+--inserting values into the StudentsLogin table
+insert into StudentsLogin (StudentID,Password)
+values
+(1,'12345'),
+(2,'23545'),
+(3,'63567'),
+(4,'84674'),
+(5,'34754'),
+(6,'74678');
+
+-
