@@ -193,7 +193,26 @@ values
 (6606, '80309'),
 (7707, '00893');
 
+--inserting values into the Students and teacher table
 insert into StudentandTeacher (PersonID, RoleID)
 select StudentID, RoleID from Students
 union
 select TeacherID, RoleID from Teacher;
+
+
+--inserting values into the Attendance
+insert into Attendance (PersonID,AttendanceDate,AttendanceStatus)
+values
+(1,GetDate(),'P'),
+(2,Getdate(),'A'),
+(3,Getdate(),'P'),
+(4,Getdate(),'A'),
+(5,Getdate(),'P'),
+(6,Getdate(),'A'),
+(1101,Getdate(),'P'),
+(2202,'2025-05-26','P'),
+(3303,'2025-05-23','P'),
+(4404,Getdate(),'P'),
+(5505,Getdate(),'P'),
+(6606,Getdate(),'P'),
+(7707,'2025-05-27','P');
