@@ -83,3 +83,23 @@ from Attendance a
 right join Teacher t
 on a.PersonID = t.TeacherID
 where a.AttendanceDate = CAST(GETDATE() AS Date);
+
+
+--Show subject-wise marks for each student.
+select s.StudentName, sub.SubjectName, sm.Mark
+from SubjectMark sm
+join Students s 
+on sm.StudentID = s.StudentID
+join Subjects sub
+on sm.SubjectID = sub.SubjectID
+order by s.StudentName;
+
+
+--Show full student info including login and department name.
+select s.StudentID, s.StudentName,d.DepartmentName, sl.Password
+from Students s
+join Department d
+on s.DepartmentID = d.DepartmentID
+join StudentsLogin sl
+on s.StudentID = sl.StudentID;
+
