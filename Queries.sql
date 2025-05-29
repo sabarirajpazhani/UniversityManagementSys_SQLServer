@@ -44,6 +44,8 @@ FROM Students s
 JOIN Department d ON s.DepartmentID = d.DepartmentID
 GROUP BY d.DepartmentName;
 
+
+
 --List all "Teaching Staff" teachers along with their department names.
 select t.TeacherName, tr.TeacherRoleID, d.DepartmentName
 from Teacher t
@@ -53,3 +55,31 @@ left join Department d
 on t.DepartmentID = d.DepartmentID
 where tr.TeacherRoleName = 'Teaching Staff';
 
+
+--Show today's attendance for all students and teachers.
+insert into Attendance (PersonID,AttendanceDate,AttendanceStatus)
+values
+(2,Getdate(),'P'),
+(3,Getdate(),'P'),
+(4,Getdate(),'P'),
+(5,Getdate(),'P'),
+(6,Getdate(),'P');
+select a.PersonID, s.StudentName, a.AttendanceDate, a.AttendanceStatus
+from Attendance a
+left join Students s
+on a.PersonID = s.StudentID
+where a.AttendanceDate = CAST(GETDATE() AS Date);
+
+
+insert into Attendance (PersonID,AttendanceDate,AttendanceStatus)
+values
+(1101,Getdate(),'P'),
+(3303,Getdate(),'P'),
+(4404,Getdate(),'P'),
+(5505,Getdate(),'P'),
+(6606,Getdate(),'P');
+select a.PersonID, t.TeacherName, a.AttendanceDate, a.AttendanceStatus
+from Attendance a
+right join Teacher t
+on a.PersonID = t.TeacherID
+where a.AttendanceDate = CAST(GETDATE() AS Date);
