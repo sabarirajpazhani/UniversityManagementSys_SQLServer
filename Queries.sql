@@ -22,6 +22,7 @@ select * from StudentandTeacher; --Student and Teacher
 
 select * from Attendance -- Attendance;
 
+use UniversityManagementSystem;
 
 
 --Display all students and their total marks in descending order of marks.
@@ -44,5 +45,11 @@ JOIN Department d ON s.DepartmentID = d.DepartmentID
 GROUP BY d.DepartmentName;
 
 --List all "Teaching Staff" teachers along with their department names.
-
+select t.TeacherName, tr.TeacherRoleID, d.DepartmentName
+from Teacher t
+inner join TeacherRoles tr
+on t.TeacherRoleID = tr.TeacherRoleID
+left join Department d
+on t.DepartmentID = d.DepartmentID
+where tr.TeacherRoleName = 'Teaching Staff';
 
